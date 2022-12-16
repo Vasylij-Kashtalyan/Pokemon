@@ -1,12 +1,27 @@
 import { SearchPokemon } from 'components/SearchPokemon/SearchPokemon';
-import Container from 'components/Container/Container';
-import AppBar from 'components/AppBar/AppBar';
+import { Container } from 'components/Container/Container';
+import { AppBar } from 'components/AppBar/AppBar';
 import { Suspense, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import PokemonPage from 'components/PokemonPage/PokemonPage';
+import { useEffect } from 'react';
+import { fetchPokemon } from 'api/API';
+import { PokemonList } from 'components/PokemonList/PokemonList';
+import { PokemonListId } from 'components/PokemonListIId/PokemonListId';
 
 function App() {
+  const [pokemon, setPokemon] = useState(null);
   const [name, setName] = useState('');
+
+  useEffect(() => {
+    if (!name) {
+      return;
+    }
+    fetchPokemon(name)
+      .then(pokemon => {
+        setPokemon(pokemon);
+      })
+      .catch(error => error.message);
+  }, [name]);
 
   const handlerSubmit = name => {
     setName(name);
@@ -19,9 +34,12 @@ function App() {
           <Route
             path="/"
             exact="true"
-            element={<SearchPokemon onSubmit={handlerSubmit} />}
+            element={
+              <SearchPokemon onSubmit={handlerSubmit} pokemon={pokemon} />
+            }
           />
-          <Route path="/pokemon" element={<PokemonPage />} />
+          <Route path="/pokemons" element={<PokemonList />} />
+          <Route path="pokemons/:pokemonId" element={<PokemonListId />} />
         </Routes>
       </Suspense>
     </Container>

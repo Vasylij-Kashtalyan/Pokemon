@@ -1,4 +1,4 @@
-import Navigation from '../Navigation/Navigation';
+import { Navigation } from '../Navigation/Navigation';
 import s from './AppBar.module.scss';
 import { Outlet } from 'react-router-dom';
 
@@ -15,4 +15,4 @@ function AppBar() {
   );
 }
 
-export default AppBar;
+export { AppBar };

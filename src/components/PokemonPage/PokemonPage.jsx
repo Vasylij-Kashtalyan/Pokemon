@@ -1,4 +1,32 @@
-function PokemonPage() {
-  return <h1>hello</h1>;
+import s from './PokemoPage.module.scss';
+import { useParams } from 'react-router-dom';
+
+function PokemonPage({ pokemon }) {
+  const { sprites, name, stats, types } = pokemon;
+  const { pokemonId } = useParams();
+
+  return (
+    <div className={s.pokemonBox}>
+      <img
+        className={s.pokemon_Img}
+        src={sprites.other['official-artwork'].front_default}
+        alt={name}
+      />
+
+      <ul className={s.pokemonList}>
+        <h1>{name}</h1>
+        {types.map(entry => (
+          <li className={s.pokemonItem} key={entry.type.name}>
+            {entry.type.name}
+          </li>
+        ))}
+        {stats.map(entry => (
+          <li className={s.pokemonItem} key={entry.stat.name}>
+            {entry.stat.name}: {entry.base_stat}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
-export default PokemonPage;
+export { PokemonPage };

@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import styles from './Navigation.module.scss';
+import s from './Navigation.module.scss';
 
 function Navigation() {
   return (
@@ -7,22 +7,18 @@ function Navigation() {
       <NavLink
         exact="true"
         to="/"
-        className={({ isActive }) =>
-          isActive ? styles.activeLink : styles.link
-        }
+        className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         Home
       </NavLink>
 
       <NavLink
-        to="/pokemon"
-        className={({ isActive }) =>
-          isActive ? styles.activeLink : styles.link
-        }
+        to="/pokemons"
+        className={({ isActive }) => (isActive ? s.activeLink : s.link)}
       >
         Pokemons
       </NavLink>
     </nav>
   );
 }
-export default Navigation;
+export { Navigation };

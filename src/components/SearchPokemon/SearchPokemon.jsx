@@ -1,17 +1,23 @@
+import s from './SearchPokemon.module.scss';
+import 'react-toastify/dist/ReactToastify.css';
 import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
-import s from './SearchPokemon.module.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import { PokemonPage } from 'components/PokemonPage/PokemonPage';
+import { useSearchParams } from 'react-router-dom';
 
-const SearchPokemon = ({ onSubmit }) => {
-  const [name, setName] = useState('');
+const SearchPokemon = ({ onSubmit, pokemon }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchName = searchParams.get('pok') || '';
+  const [name, setName] = useState(searchName);
 
   const handlerNameChanche = evt => setName(evt.currentTarget.value);
-
+  // setSearchParams({ pok: name });
   const handlerSubmit = evt => {
     evt.preventDefault();
 
     if (name.trim() === '') {
-      alert('Введіть імя для пошуку...');
+      toast.error('Введіть імя для пошуку...');
       return;
     }
     onSubmit(name);
@@ -19,25 +25,28 @@ const SearchPokemon = ({ onSubmit }) => {
   };
 
   return (
-    <header className={s.Searchbar}>
-      <form className={s.SearchForm} onSubmit={handlerSubmit}>
-        <button type="submit" className={s.SearchFormButton}>
-          <ImSearch className={s.ImSearch} />
-          <span className={s.SearchFormButtonLabel}>Search</span>
-        </button>
-
-        <input
-          name="name"
-          onChange={handlerNameChanche}
-          value={name}
-          className={s.SearchFormInput}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search images and photos"
-        />
-      </form>
-    </header>
+    <>
+      <header className={s.Searchbar}>
+        <form className={s.SearchForm} onSubmit={handlerSubmit}>
+          <input
+            name="name"
+            onChange={handlerNameChanche}
+            value={name}
+            className={s.SearchFormInput}
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Se your pokemons"
+          />
+          <button type="submit" className={s.SearchFormButton}>
+            <ImSearch className={s.ImSearch} />
+            <span className={s.SearchFormButtonLabel}>Search</span>
+          </button>
+        </form>
+      </header>
+      {pokemon && <PokemonPage pokemon={pokemon} />}
+      <ToastContainer />
+    </>
   );
 };
 
