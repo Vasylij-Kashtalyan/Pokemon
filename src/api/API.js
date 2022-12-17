@@ -9,8 +9,8 @@ function fetchPokemon(name) {
     return Promise.reject(new Error(`Нет покемона с именем ${name}`));
   });
 }
-function fetchPokemonId(pokemonId) {
-  return fetch(`${BASE_URL}/pokemon/${pokemonId}`).then(response => {
+function fetchPokemonId(id) {
+  return fetch(`${BASE_URL}/pokemon/${id}`).then(response => {
     if (response.ok) {
       return response.json();
     }
@@ -18,7 +18,7 @@ function fetchPokemonId(pokemonId) {
 }
 
 function fetchPokemonAll() {
-  return fetch(`${BASE_URL}/pokemon?limit=100000&offset=0`).then(response => {
+  return fetch(`${BASE_URL}/pokemon?limit=20&offset=20`).then(response => {
     if (response.ok) {
       return response.json();
     }

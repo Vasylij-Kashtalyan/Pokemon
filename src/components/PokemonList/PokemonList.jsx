@@ -1,28 +1,34 @@
-import s from './PokemonList.scss';
+import s from './PokemonList.module.scss';
 import { fetchPokemonAll } from 'api/API';
 import { useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { Grid, Container } from '@mui/material';
 
 function PokemonList() {
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemons, setPokemon] = useState(null);
 
   useState(() => {
     fetchPokemonAll().then(({ results }) => {
       setPokemon(results);
     });
-  });
-
+  }, []);
   return (
-    <>
-      <ul>
-        {pokemon &&
-          pokemon.map(({ name, url }) => (
-            <li key={name}>
-              <Link to="/:pokemonId">{name}</Link>
-            </li>
+    <Container maxWidth="md">
+      <Grid
+        container
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}
+      >
+        {pokemons &&
+          pokemons.map(pokemon => (
+            <Grid item xs={2} sm={4} md={4}>
+              <Link className={s.pokemonList_link} to={pokemon.name}>
+                {pokemon.name}
+              </Link>
+            </Grid>
           ))}
-      </ul>
-    </>
+      </Grid>
+    </Container>
   );
 }
 

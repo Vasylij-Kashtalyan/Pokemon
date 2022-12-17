@@ -1,9 +1,7 @@
 import s from './PokemoPage.module.scss';
-import { useParams } from 'react-router-dom';
 
 function PokemonPage({ pokemon }) {
   const { sprites, name, stats, types } = pokemon;
-  const { pokemonId } = useParams();
 
   return (
     <div className={s.pokemonBox}>

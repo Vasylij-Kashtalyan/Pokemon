@@ -7,9 +7,7 @@ import { PokemonPage } from 'components/PokemonPage/PokemonPage';
 import { useSearchParams } from 'react-router-dom';
 
 const SearchPokemon = ({ onSubmit, pokemon }) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchName = searchParams.get('pok') || '';
-  const [name, setName] = useState(searchName);
+  const [name, setName] = useState('');
 
   const handlerNameChanche = evt => setName(evt.currentTarget.value);
   // setSearchParams({ pok: name });
