@@ -4,13 +4,12 @@ import { useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import { ToastContainer, toast } from 'react-toastify';
 import { PokemonPage } from 'components/PokemonPage/PokemonPage';
-import { useSearchParams } from 'react-router-dom';
+import { StartImg } from 'components/StartImg/StartImg';
 
 const SearchPokemon = ({ onSubmit, pokemon }) => {
   const [name, setName] = useState('');
 
   const handlerNameChanche = evt => setName(evt.currentTarget.value);
-  // setSearchParams({ pok: name });
   const handlerSubmit = evt => {
     evt.preventDefault();
 
@@ -42,7 +41,7 @@ const SearchPokemon = ({ onSubmit, pokemon }) => {
           </button>
         </form>
       </header>
-      {pokemon && <PokemonPage pokemon={pokemon} />}
+      {pokemon ? <PokemonPage pokemon={pokemon} /> : <StartImg />}
       <ToastContainer />
     </>
   );
