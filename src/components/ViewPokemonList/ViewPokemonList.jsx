@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Container, ImageList, ImageListItem } from '@mui/material';
-import { Pagination } from 'components/Pagination';
-import { ListPok } from 'components/ListPok';
+import { Pagination } from 'components/Pagination/Pagination';
+import { ListPok } from 'components/ListPok/ListPok';
 
 function PokemonList() {
   const [pokemons, setPokemons] = useState([]);
@@ -32,7 +32,7 @@ function PokemonList() {
       }
     };
     getAllPokemons();
-  }, []);
+  }, [loadPokemon]);
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -41,7 +41,7 @@ function PokemonList() {
   const paginate = pageNumber => setCurrentPage(pageNumber);
 
   return (
-    <Container maxWidth="md">
+    <Container xs={12} sm={6} md={4}>
       <ImageList variant="masonry" cols={3} gap={8}>
         <ImageListItem>
           <ListPok pokemons={currentPosts} />

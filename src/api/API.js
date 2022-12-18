@@ -10,14 +10,6 @@ function fetchPokemon(name) {
   });
 }
 
-function fetchPokemonAbility(id) {
-  return fetch(`${BASE_URL}/ability/${id}`).then(response => {
-    if (response.ok) {
-      return response.json();
-    }
-  });
-}
-
 function fetchPokemonAll(offset, limit) {
   return fetch(`${BASE_URL}/pokemon?offset=${offset}&limit=${limit}`).then(
     response => {
@@ -28,4 +20,4 @@ function fetchPokemonAll(offset, limit) {
   );
 }
 
-export { fetchPokemon, fetchPokemonAll, fetchPokemonAbility };
+export { fetchPokemon, fetchPokemonAll };

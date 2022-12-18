@@ -5,8 +5,8 @@ import { Suspense, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect } from 'react';
 import { fetchPokemon } from 'api/API';
-import { PokemonList } from 'components/PokemonList/PokemonList';
-import { PokemonListId } from 'components/PokemonListIId/PokemonListId';
+import { PokemonList } from 'components/ViewPokemonList/ViewPokemonList';
+import { PokemonListId } from 'components/PokemonListId/PokemonListId';
 import { Container } from '@mui/material';
 
 function App() {

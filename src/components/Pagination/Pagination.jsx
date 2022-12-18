@@ -1,4 +1,4 @@
-import React from 'react';
+import s from './Pagination.module.scss';
 
 const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   const pageNumbers = [];
@@ -8,7 +8,7 @@ const Pagination = ({ postsPerPage, totalPosts, paginate }) => {
   }
 
   return (
-    <ul className="pagination">
+    <ul className={s.pagination}>
       {pageNumbers.map(number => (
         <li key={number} className="page-item">
           <a

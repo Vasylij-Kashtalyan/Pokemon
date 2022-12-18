@@ -2,9 +2,7 @@ import { useParams } from 'react-router-dom';
 import { fetchPokemon } from 'api/API';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import s from './PokemonListId.module.scss';
 import { Container } from '@mui/material';
-import { Link, Outlet } from 'react-router-dom';
 import { PokemonPage } from 'components/PokemonPage/PokemonPage';
 
 function PokemonListId() {
@@ -22,10 +20,6 @@ function PokemonListId() {
     pokemon && (
       <Container xs={12} sm={6} md={4}>
         <PokemonPage pokemon={pokemon} />
-        <Link className={s.link} to="reviews">
-          Reviews
-        </Link>
-        <Outlet />
       </Container>
     )
   );

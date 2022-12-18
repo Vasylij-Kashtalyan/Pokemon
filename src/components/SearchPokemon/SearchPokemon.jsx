@@ -9,12 +9,13 @@ import { StartImg } from 'components/StartImg/StartImg';
 const SearchPokemon = ({ onSubmit, pokemon }) => {
   const [name, setName] = useState('');
 
-  const handlerNameChanche = evt => setName(evt.currentTarget.value);
+  const handlerNameChanche = evt =>
+    setName(evt.currentTarget.value.replace(/[^a-z\d]/gi, '').toLowerCase());
   const handlerSubmit = evt => {
     evt.preventDefault();
 
     if (name.trim() === '') {
-      toast.error('Введіть імя для пошуку...');
+      toast.error('Введіть імя свого покемона...');
       return;
     }
     onSubmit(name);
