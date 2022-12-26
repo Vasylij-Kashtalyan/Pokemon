@@ -1,16 +1,30 @@
 import s from './SearchPokemon.module.scss';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ImSearch } from 'react-icons/im';
 import { ToastContainer, toast } from 'react-toastify';
 import { PokemonPage } from 'components/PokemonPage/PokemonPage';
 import { StartImg } from 'components/StartImg/StartImg';
+import { fetchPokemon } from 'api/API';
 
-const SearchPokemon = ({ onSubmit, pokemon }) => {
+const SearchPokemon = ({ onSubmit }) => {
   const [name, setName] = useState('');
+  const [pokemon, setPokemon] = useState('');
+
+  useEffect(() => {
+    if (!name) {
+      return;
+    }
+    fetchPokemon(name)
+      .then(pokemon => {
+        setPokemon(pokemon);
+      })
+      .catch(error => error.message);
+  }, [name]);
 
   const handlerNameChanche = evt =>
     setName(evt.currentTarget.value.replace(/[^a-z\d]/gi, '').toLowerCase());
+
   const handlerSubmit = evt => {
     evt.preventDefault();
 

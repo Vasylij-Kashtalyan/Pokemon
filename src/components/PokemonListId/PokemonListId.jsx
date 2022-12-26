@@ -5,7 +5,7 @@ import { useState } from 'react';
 import { Container } from '@mui/material';
 import { PokemonPage } from 'components/PokemonPage/PokemonPage';
 
-function PokemonListId() {
+function PokemonListId(props) {
   const [pokemon, setPokemon] = useState(null);
   const { name } = useParams();
 

@@ -2,8 +2,18 @@
   text-transform: capitalize;
   color: #000000;
   text-decoration: none;
+  display: flex;
+  justify-content: center;
 }
+
 .list {
   color: #000000;
   text-decoration: none;
+  display: inline-flex;
+  margin: 10px 10px 10px 10px;
+
+  &_item {
+    border: 1px solid tomato;
+    border-radius: 20%;
+  }
 }
