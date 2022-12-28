@@ -1,30 +1,53 @@
 import s from './PokemoPage.module.scss';
+import { Button } from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { BoxPage } from 'components/BoxPage/BoxPage';
 
-function PokemonPage({ pokemon }) {
-  const { sprites, name, stats, types } = pokemon;
+function PokemonPage({ picture, pokemon, abilities, type }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    if (location?.state?.from) {
+      const { pathname, search } = location?.state?.from;
+
+      return navigate(`${pathname}${search}`);
+    }
+    return navigate('/');
+  };
+
   return (
-    <div className={s.pokemonBox}>
-      <img
-        className={s.pokemon_Img}
-        src={sprites.other['official-artwork'].front_default}
-        alt={name}
-      />
+    pokemon && (
+      <BoxPage>
+        <Button onClick={goBack}>Back</Button>
+        <div className={s.box}>
+          <img className={s.box_img} src={picture} alt={pokemon.name} />
+          <ul className={s.list}>
+            <h1 className={s.list_title}>{pokemon.name}</h1>
 
-      <ul className={s.pokemonList}>
-        <h1 className={s.pokemonTitle}>{name}</h1>
-        {types.map(({ type }) => (
-          <li className={s.pokemonItem} key={type.name}>
-            Type: {type.name}
-          </li>
-        ))}
+            <li className={s.list_item} key={type.name}>
+              Type: {type}
+            </li>
 
-        {stats.map(entry => (
-          <li className={s.pokemonItem} key={entry.stat.name}>
-            {entry.stat.name}: {entry.base_stat}
-          </li>
-        ))}
-      </ul>
-    </div>
+            {pokemon.stats.map(entry => (
+              <li className={s.list_item} key={entry.stat.name}>
+                {entry.stat.name}: {entry.base_stat}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className={s.box_effect}>
+          <h2 className={s.list_title}>Abilities</h2>
+
+          <p>Effect</p>
+          <span className={s.box_text}>{abilities.effect}</span>
+
+          <p>Short Effect</p>
+          <span className={s.box_text}>{abilities.short_effect}</span>
+        </div>
+      </BoxPage>
+    )
   );
 }
 export { PokemonPage };

@@ -1,18 +1,16 @@
-import { Navigation } from '../Navigation/Navigation';
 import s from './AppBar.module.scss';
-import { Outlet } from 'react-router-dom';
+import { PokeBol } from 'components/AppBar/PokeBol/PokeBol';
+import { Logo } from './Logo/Logo';
 
 function AppBar() {
   return (
     <>
       <header className={s.header}>
-        <Navigation />{' '}
+        <Logo />
+        <PokeBol />
       </header>
-      <main>
-        <Outlet />
-      </main>
     </>
   );
 }
 
-export { AppBar };
+export default AppBar;

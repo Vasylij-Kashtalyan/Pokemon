@@ -1,0 +1,9 @@
+.bol {
+  width: 100px;
+  animation: rotating 10s infinite linear;
+}
+@keyframes rotating {
+  to {
+    transform: rotate(360deg);
+  }
+}

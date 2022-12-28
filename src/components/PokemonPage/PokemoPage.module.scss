@@ -1,23 +1,37 @@
-.pokemonBox {
+.box {
   display: flex;
   align-items: center;
   justify-items: flex-start;
   margin-top: 20px;
+
+  &_effect {
+    margin-top: 25px;
+  }
 }
-.pokemon_Img {
+.box_img {
   width: 30%;
+  border-radius: 10%;
+  border: 1px solid tomato;
+  background-color: bisque;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
-.pokemonList {
-  margin-left: 20px;
+.list {
+  margin-left: 25px;
 }
-.pokemonItem {
+.list_title {
+  text-transform: capitalize;
+  margin-bottom: 15px;
+}
+.list_item {
   font-size: 1.3rem;
   color: tomato;
   font-family: Helvetica, Arial, sans-serif;
   text-transform: capitalize;
 }
-.pokemonTitle {
+.box_text {
+  font-size: 1.3rem;
+  color: tomato;
+  font-family: Helvetica, Arial, sans-serif;
   text-transform: capitalize;
 }

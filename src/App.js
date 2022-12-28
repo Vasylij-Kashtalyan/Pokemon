@@ -1,46 +1,21 @@
-import { SearchPokemon } from 'components/SearchPokemon/SearchPokemon';
-// import { Container } from 'components/Container/Container';
-import { AppBar } from 'components/AppBar/AppBar';
-import { Suspense, useState } from 'react';
-import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { fetchPokemon } from 'api/API';
-import { PokemonList } from 'components/ViewPokemonList/ViewPokemonList';
-import { PokemonListId } from 'components/PokemonListId/PokemonListId';
 import { Container } from '@mui/material';
+import { Suspense, lazy } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+const AppBar = lazy(() => import('./components/AppBar/AppBar'));
+const PokemonList = lazy(() => import('./components/PokemonList'));
+const PokemonListId = lazy(() => import('./components/PokemonListId'));
+const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
 
 function App() {
-  const [pokemon, setPokemon] = useState(null);
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    if (!name) {
-      return;
-    }
-    fetchPokemon(name)
-      .then(pokemon => {
-        setPokemon(pokemon);
-      })
-      .catch(error => error.message);
-  }, [name]);
-
-  const handlerSubmit = name => {
-    setName(name);
-  };
   return (
     <Container xs={12} sm={6} md={4}>
       <AppBar />
       <Suspense>
         <Routes>
-          <Route
-            path="/"
-            exact="true"
-            element={
-              <SearchPokemon onSubmit={handlerSubmit} pokemon={pokemon} />
-            }
-          />
-          <Route path="/pokemons" element={<PokemonList />} />
-          <Route path="/pokemons/:name" element={<PokemonListId />} />
+          <Route path="/" exact="true" element={<PokemonList />} />
+          <Route path="/:name" element={<PokemonListId />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Suspense>
     </Container>
