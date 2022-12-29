@@ -3,7 +3,10 @@ import { Button } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { BoxPage } from 'components/BoxPage/BoxPage';
 
-function PokemonPage({ picture, pokemon, abilities, type }) {
+function PokemonPage({ pokemon, abilities }) {
+  const picturePok = pokemon.sprites.other['official-artwork'].front_default;
+  const typePok = pokemon.types[0].type.name;
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -20,15 +23,17 @@ function PokemonPage({ picture, pokemon, abilities, type }) {
     pokemon && (
       <BoxPage>
         <Button onClick={goBack}>Back</Button>
+
         <div className={s.box}>
-          <img className={s.box_img} src={picture} alt={pokemon.name} />
+          {/* ------Picture----- */}
+          <img className={s.box_img} src={picturePok} alt={pokemon.name} />
           <ul className={s.list}>
             <h1 className={s.list_title}>{pokemon.name}</h1>
 
-            <li className={s.list_item} key={type.name}>
-              Type: {type}
-            </li>
+            {/* ------Type----- */}
+            <li className={s.list_item}>Type: {typePok}</li>
 
+            {/* ------Stats----- */}
             {pokemon.stats.map(entry => (
               <li className={s.list_item} key={entry.stat.name}>
                 {entry.stat.name}: {entry.base_stat}
@@ -37,6 +42,7 @@ function PokemonPage({ picture, pokemon, abilities, type }) {
           </ul>
         </div>
 
+        {/* ------Abilities----- */}
         <div className={s.box_effect}>
           <h2 className={s.list_title}>Abilities</h2>
 

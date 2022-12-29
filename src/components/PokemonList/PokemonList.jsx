@@ -16,6 +16,7 @@ function PokemonList() {
       const getMorPokemon = async () => {
         const data = await fetchPokemonAll(offset, limit);
         setPokemons(data.results);
+
         const createPokemonDetals = async pokemon => {
           pokemon.map(async pokemon => {
             const response = await fetch(pokemon.url);
@@ -27,6 +28,7 @@ function PokemonList() {
 
         createPokemonDetals(data.results);
       };
+
       getMorPokemon();
     } catch (error) {
       console.log(error);
