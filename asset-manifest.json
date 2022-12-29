@@ -1,31 +1,31 @@
 {
   "files": {
     "main.css": "/card-pokemon/static/css/main.0fa18240.css",
-    "main.js": "/card-pokemon/static/js/main.13e38e8b.js",
+    "main.js": "/card-pokemon/static/js/main.1c5cc7f4.js",
     "static/css/788.f5914763.chunk.css": "/card-pokemon/static/css/788.f5914763.chunk.css",
     "static/js/788.01c12b0e.chunk.js": "/card-pokemon/static/js/788.01c12b0e.chunk.js",
-    "static/css/421.e5d0bb62.chunk.css": "/card-pokemon/static/css/421.e5d0bb62.chunk.css",
-    "static/js/421.4451e43d.chunk.js": "/card-pokemon/static/js/421.4451e43d.chunk.js",
-    "static/css/256.549754b0.chunk.css": "/card-pokemon/static/css/256.549754b0.chunk.css",
-    "static/js/256.0bbc06a8.chunk.js": "/card-pokemon/static/js/256.0bbc06a8.chunk.js",
+    "static/css/421.1d19a22b.chunk.css": "/card-pokemon/static/css/421.1d19a22b.chunk.css",
+    "static/js/421.845b680a.chunk.js": "/card-pokemon/static/js/421.845b680a.chunk.js",
+    "static/css/256.8e5e498d.chunk.css": "/card-pokemon/static/css/256.8e5e498d.chunk.css",
+    "static/js/256.90a667d8.chunk.js": "/card-pokemon/static/js/256.90a667d8.chunk.js",
     "static/js/769.0a3d082c.chunk.js": "/card-pokemon/static/js/769.0a3d082c.chunk.js",
     "static/js/938.1348c70e.chunk.js": "/card-pokemon/static/js/938.1348c70e.chunk.js",
     "static/media/logo.png": "/card-pokemon/static/media/logo.9eda1cfc825b66a5d56d.png",
     "static/media/bol.png": "/card-pokemon/static/media/bol.fc8fab15b2d48e7162e7.png",
     "index.html": "/card-pokemon/index.html",
     "main.0fa18240.css.map": "/card-pokemon/static/css/main.0fa18240.css.map",
-    "main.13e38e8b.js.map": "/card-pokemon/static/js/main.13e38e8b.js.map",
+    "main.1c5cc7f4.js.map": "/card-pokemon/static/js/main.1c5cc7f4.js.map",
     "788.f5914763.chunk.css.map": "/card-pokemon/static/css/788.f5914763.chunk.css.map",
     "788.01c12b0e.chunk.js.map": "/card-pokemon/static/js/788.01c12b0e.chunk.js.map",
-    "421.e5d0bb62.chunk.css.map": "/card-pokemon/static/css/421.e5d0bb62.chunk.css.map",
-    "421.4451e43d.chunk.js.map": "/card-pokemon/static/js/421.4451e43d.chunk.js.map",
-    "256.549754b0.chunk.css.map": "/card-pokemon/static/css/256.549754b0.chunk.css.map",
-    "256.0bbc06a8.chunk.js.map": "/card-pokemon/static/js/256.0bbc06a8.chunk.js.map",
+    "421.1d19a22b.chunk.css.map": "/card-pokemon/static/css/421.1d19a22b.chunk.css.map",
+    "421.845b680a.chunk.js.map": "/card-pokemon/static/js/421.845b680a.chunk.js.map",
+    "256.8e5e498d.chunk.css.map": "/card-pokemon/static/css/256.8e5e498d.chunk.css.map",
+    "256.90a667d8.chunk.js.map": "/card-pokemon/static/js/256.90a667d8.chunk.js.map",
     "769.0a3d082c.chunk.js.map": "/card-pokemon/static/js/769.0a3d082c.chunk.js.map",
     "938.1348c70e.chunk.js.map": "/card-pokemon/static/js/938.1348c70e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.0fa18240.css",
-    "static/js/main.13e38e8b.js"
+    "static/js/main.1c5cc7f4.js"
   ]
 }
