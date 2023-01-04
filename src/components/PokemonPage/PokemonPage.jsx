@@ -27,6 +27,7 @@ function PokemonPage({ pokemon, abilities }) {
         <div className={s.box}>
           {/* ------Picture----- */}
           <img className={s.box_img} src={picturePok} alt={pokemon.name} />
+
           <ul className={s.list}>
             <h1 className={s.list_title}>{pokemon.name}</h1>
 
@@ -43,15 +44,30 @@ function PokemonPage({ pokemon, abilities }) {
         </div>
 
         {/* ------Abilities----- */}
-        <div className={s.box_effect}>
-          <h2 className={s.list_title}>Abilities</h2>
+        {abilities.effect ? (
+          <div className={s.box_effect}>
+            {abilities.effect ? (
+              <>
+                <h2 className={s.list_title}>Abilities</h2>
+                <p>Effect</p>
+                <span className={s.box_text}>{abilities.effect}</span>
+              </>
+            ) : (
+              <span className={s.box_text}>Not effect</span>
+            )}
 
-          <p>Effect</p>
-          <span className={s.box_text}>{abilities.effect}</span>
-
-          <p>Short Effect</p>
-          <span className={s.box_text}>{abilities.short_effect}</span>
-        </div>
+            {abilities.short_effect ? (
+              <>
+                <p>Short Effect</p>
+                <span className={s.box_text}>{abilities.short_effect}</span>
+              </>
+            ) : (
+              <span className={s.box_text}>Not short effect</span>
+            )}
+          </div>
+        ) : (
+          <span className={s.box_text}>Not effect</span>
+        )}
       </BoxPage>
     )
   );

@@ -13,6 +13,7 @@
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
     "eslint-config-standard": "^17.0.0",
+    "json-pokemon": "^1.0.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-icons": "^4.7.1",

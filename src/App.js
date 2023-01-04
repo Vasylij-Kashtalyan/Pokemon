@@ -11,6 +11,7 @@ function App() {
   return (
     <Container xs={12} sm={6} md={4}>
       <AppBar />
+
       <Suspense>
         <Routes>
           <Route path="/" exact="true" element={<PokemonList />} />

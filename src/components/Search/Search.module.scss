@@ -1,0 +1,16 @@
+.box {
+  display: flex;
+  height: 20px;
+
+  &_label {
+    color: tomato;
+  }
+
+  &_input {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
