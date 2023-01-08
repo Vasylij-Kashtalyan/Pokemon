@@ -13,7 +13,7 @@ function Search({ onChange }) {
   return (
     <div className={s.box}>
       <label className={s.box_label}>
-        Search:{' '}
+        Search:
         <input
           className={s.box_input}
           name="name"

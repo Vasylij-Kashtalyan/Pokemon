@@ -1,24 +1,23 @@
 import s from './PokemonList.module.scss';
-import { useState, useEffect } from 'react';
-import { ToastContainer } from 'react-toastify';
-import { toast } from 'react-toastify';
-import { Container } from 'components/Container/Container';
-import { Button } from '@mui/material';
-import { Pokemon } from 'components/Pokemon/Pokemon';
-import { fetchPokemonAll } from 'api/API';
 import Search from 'components/Search';
 import pokemons from 'json-pokemon';
-import filterPokemonsByName from 'utils/filterPokemonsByName';
 import SearchListPokemon from 'components/SearchListPokemon/SearchListPokemon';
-import { Link } from 'react-router-dom';
+import filterPokemonsByName from 'utils/filterPokemonsByName';
+
+import { useState, useEffect } from 'react';
+import { fetchPokemonAll } from 'api/API';
+import { Container } from 'components/Container/Container';
+import { Pokemon } from 'components/Pokemon/Pokemon';
+import { Button } from '@mui/material';
 
 function PokemonList() {
-  const [pokemon, setPokemons] = useState([]);
-  const [offset, setOffset] = useState(20);
-  const [limit, setLimint] = useState(40);
-  const [details, setDetails] = useState([]);
-  const [name, setName] = useState('');
   const [arraySearch, setArraySearch] = useState([]);
+  const [pokemon, setPokemons] = useState([]);
+  const [details, setDetails] = useState([]);
+  const [offset, setOffset] = useState(20);
+  const [limit, setLimint] = useState(80);
+  const [types, setTypes] = useState([]);
+  const [name, setName] = useState('');
 
   useEffect(() => {
     try {
@@ -46,34 +45,69 @@ function PokemonList() {
 
   // -----------------SearchByName---------------- //
   useEffect(() => {
-    if (name.trim() === '') return;
-
-    if (name.length === 0) {
-      return toast.error(`No pictures with name: "${name}".`);
-    }
+    if (!name.trim()) return;
 
     if (name) {
       let filtePokemons = pokemons.filter(filterPokemonsByName(name));
       setArraySearch(filtePokemons);
     }
   }, [name]);
+
   // -----------------NextPage---------------- //
   const nextPage = () => {
     setOffset(limit + offset);
+    setLimint();
   };
 
-  // -----------------SetName---------------- //
-  const handlerSetName = name => {
+  // -----------------HandlerSearchName---------------- //
+  const handlerSearchName = name => {
     setName(name);
   };
+
+  // ---------------FilterTypesPokemon------------- //
+  const filterType = type => {
+    if (details.length > 0 && type) {
+      let listType = details
+        .filter(pokemon => pokemon.types.some(som => som.type.name === type))
+        .map(pokemon => {
+          let Tem = { ...pokemon };
+          return Tem;
+        });
+
+      if (listType.length > 0) setDetails(listType);
+    }
+  };
+
+  // ---------------FetchTypesPokemon------------- //
+  useEffect(() => {
+    const getTypePokemon = async () => {
+      const data = await fetch('https://pokeapi.co/api/v2/type');
+      const response = await data.json();
+      setTypes(response.results);
+    };
+
+    getTypePokemon();
+  }, []);
+
   return (
     <>
-      <section className={s.section}>
-        <Search onChange={handlerSetName} />
-      </section>
-
       <Container>
-        {arraySearch.length ? (
+        <Search onChange={handlerSearchName} />
+
+        <div className={s.listTypes}>
+          {types.length > 0 &&
+            types.map(pokemon => (
+              <button
+                className={`${s.listTypes_button} ${pokemon.name}`}
+                onClick={() => filterType(pokemon.name)}
+                key={pokemon.name}
+              >
+                {pokemon.name}
+              </button>
+            ))}
+        </div>
+
+        {name.length >= 2 && arraySearch.length > 0 ? (
           <SearchListPokemon arraySearch={arraySearch} />
         ) : (
           <>
@@ -87,7 +121,6 @@ function PokemonList() {
           </>
         )}
       </Container>
-      <ToastContainer />
     </>
   );
 }

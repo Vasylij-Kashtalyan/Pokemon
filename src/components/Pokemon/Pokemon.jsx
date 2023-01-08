@@ -9,7 +9,7 @@ const Pokemon = ({ pokemon }) => {
 
   return (
     <ul className={s.list}>
-      <li className={s.list_item}>
+      <li className={`${s.list_item} ${s.color}`}>
         <Link state={{ from: location }} to={pokemon.name}>
           <h5 className={s.list_title}>
             {pokemon.name} #{idPok}
