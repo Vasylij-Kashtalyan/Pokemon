@@ -12,18 +12,14 @@ function Search({ onChange }) {
 
   return (
     <div className={s.box}>
-      <label className={s.box_label}>
-        Search:
-        <input
-          className={s.box_input}
-          name="name"
-          onChange={handlerChange}
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Name Pokemon"
-        />
-      </label>
+      <input
+        className={s.box_input}
+        name="name"
+        onChange={handlerChange}
+        type="text"
+        autoComplete="off"
+        placeholder="Search pokemon"
+      />
     </div>
   );
 }

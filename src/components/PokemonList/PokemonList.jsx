@@ -3,6 +3,7 @@ import Search from 'components/Search';
 import pokemons from 'json-pokemon';
 import SearchListPokemon from 'components/SearchListPokemon/SearchListPokemon';
 import filterPokemonsByName from 'utils/filterPokemonsByName';
+import ListFilterType from 'components/ListFilterType';
 
 import { useState, useEffect } from 'react';
 import { fetchPokemonAll } from 'api/API';
@@ -16,7 +17,6 @@ function PokemonList() {
   const [details, setDetails] = useState([]);
   const [offset, setOffset] = useState(20);
   const [limit, setLimint] = useState(80);
-  const [types, setTypes] = useState([]);
   const [name, setName] = useState('');
 
   useEffect(() => {
@@ -64,48 +64,13 @@ function PokemonList() {
     setName(name);
   };
 
-  // ---------------FilterTypesPokemon------------- //
-  const filterType = type => {
-    if (details.length > 0 && type) {
-      let listType = details
-        .filter(pokemon => pokemon.types.some(som => som.type.name === type))
-        .map(pokemon => {
-          let Tem = { ...pokemon };
-          return Tem;
-        });
-
-      if (listType.length > 0) setDetails(listType);
-    }
-  };
-
-  // ---------------FetchTypesPokemon------------- //
-  useEffect(() => {
-    const getTypePokemon = async () => {
-      const data = await fetch('https://pokeapi.co/api/v2/type');
-      const response = await data.json();
-      setTypes(response.results);
-    };
-
-    getTypePokemon();
-  }, []);
-
   return (
     <>
       <Container>
         <Search onChange={handlerSearchName} />
-
-        <div className={s.listTypes}>
-          {types.length > 0 &&
-            types.map(pokemon => (
-              <button
-                className={`${s.listTypes_button} ${pokemon.name}`}
-                onClick={() => filterType(pokemon.name)}
-                key={pokemon.name}
-              >
-                {pokemon.name}
-              </button>
-            ))}
-        </div>
+        {details.length > 0 && (
+          <ListFilterType details={details} setDetails={setDetails} />
+        )}
 
         {name.length >= 2 && arraySearch.length > 0 ? (
           <SearchListPokemon arraySearch={arraySearch} />
