@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { PokemonPage } from 'components/PokemonPage/PokemonPage';
 
-function PokemonListId(props) {
+function PokemonListId() {
   const [pokemon, setPokemons] = useState(null);
   const [abilities, setAbilities] = useState([]);
   const { name } = useParams();

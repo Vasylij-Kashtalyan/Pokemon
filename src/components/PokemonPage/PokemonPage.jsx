@@ -1,32 +1,20 @@
 import s from './PokemoPage.module.scss';
-import { Button } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
 import { BoxPage } from 'components/BoxPage/BoxPage';
 
 function PokemonPage({ pokemon, abilities }) {
   const picturePok = pokemon.sprites.other['official-artwork'].front_default;
   const typePok = pokemon.types[0].type.name;
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const goBack = () => {
-    if (location?.state?.from) {
-      const { pathname, search } = location?.state?.from;
-
-      return navigate(`${pathname}${search}`);
-    }
-    return navigate('/');
-  };
-
   return (
     pokemon && (
       <BoxPage>
-        <Button onClick={goBack}>Back</Button>
-
         <div className={s.box}>
           {/* ------Picture----- */}
-          <img className={s.box_img} src={picturePok} alt={pokemon.name} />
+          <img
+            className={`${s.box_img} ${pokemon.types[0].type.name}`}
+            src={picturePok}
+            alt={pokemon.name}
+          />
 
           <ul className={s.list}>
             <h1 className={s.list_title}>{pokemon.name}</h1>
