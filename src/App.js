@@ -22,14 +22,12 @@ const Search = lazy(() => import('./components/Search'));
 function App() {
   const [name, setName] = useState('');
   const [arraySearch, setArraySearch] = useState([]);
-  const [pokemon, setPokemons] = useState([]);
+  const [, setPokemons] = useState([]);
   const [details, setDetails] = useState([]);
   const [offset, setOffset] = useState(40);
-  const [limit, setLimint] = useState(100);
+  const [limit] = useState(100);
   const [types, setTypes] = useState([]);
   const [fil, setFil] = useState(details);
-
-  console.log('fil', fil);
 
   useEffect(() => {
     try {
@@ -106,7 +104,7 @@ function App() {
   }, [name]);
 
   return (
-    <Container xs={12} sm={6} md={4}>
+    <Container>
       <AppBar />
       <Search path="/" onChange={handlerSearchName} />
       <ListFilterType types={types} filterType={filterType} />
