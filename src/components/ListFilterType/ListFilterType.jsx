@@ -24,7 +24,7 @@ function ListFilterType({ types, filterType }) {
           <AiOutlineLeft onClick={goBack} />
         </Button>
       </div>
-      <div className={s.listTypes}>
+      <ul className={s.listTypes}>
         {types.length > 0 &&
           types.map(pokemon => (
             <Link key={pokemon.name} to={'/type'}>
@@ -36,7 +36,7 @@ function ListFilterType({ types, filterType }) {
               </button>
             </Link>
           ))}
-      </div>
+      </ul>
     </>
   );
 }

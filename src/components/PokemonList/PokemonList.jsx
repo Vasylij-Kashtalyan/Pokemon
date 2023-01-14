@@ -20,13 +20,14 @@ function PokemonList({ details, fil, nextPage }) {
     return (
       <>
         <div className={s.boxDetails}>
-          {details.map((pokemon, i) => (
-            <Pokemon pokemon={pokemon} key={i} />
-          ))}
+          {details &&
+            details.map((pokemon, i) => <Pokemon pokemon={pokemon} key={i} />)}
         </div>
-        <div className={s.btnMore}>
-          <Button onClick={nextPage}>Load More</Button>
-        </div>
+        {details.length >= 4 && (
+          <div className={s.btnMore}>
+            <Button onClick={nextPage}>Load More</Button>
+          </div>
+        )}
       </>
     );
   }
