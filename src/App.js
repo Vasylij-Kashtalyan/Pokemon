@@ -18,17 +18,19 @@ const SearchListPokemon = lazy(() =>
   import('./components/SearchListPokemon/SearchListPokemon')
 );
 const Search = lazy(() => import('./components/Search'));
+const LOCALSTORAGE_KEY_TYPE = 'typePokemons';
 
 function App() {
-  const [name, setName] = useState('');
   const [arraySearch, setArraySearch] = useState([]);
-  const [, setPokemons] = useState([]);
   const [details, setDetails] = useState([]);
   const [offset, setOffset] = useState(40);
-  const [limit] = useState(100);
   const [types, setTypes] = useState([]);
+  const [name, setName] = useState('');
+  const [, setPokemons] = useState([]);
+  const [limit] = useState(100);
   const [fil, setFil] = useState(details);
 
+  // ---------------FetchAllPokemon------------- //
   useEffect(() => {
     try {
       const getMorPokemon = async () => {
@@ -61,21 +63,26 @@ function App() {
   // ---------------FilterTypesPokemon------------- //
   const filterType = type => {
     const allPokemon = [...details];
-
-    console.log('allPokemon', allPokemon);
-
     let listType = allPokemon.filter(pokemon =>
       pokemon.types.some(som => som.type.name === type)
     );
-
-    console.log(listType);
 
     if (listType.length === 0) {
       toast.info(`Not pokemon by types ${type}...`);
     } else {
       setFil(listType);
+
+      localStorage.setItem(LOCALSTORAGE_KEY_TYPE, JSON.stringify(listType));
     }
   };
+
+  // ---------------LocalStorageGetTypesPokemon------------- //
+  useEffect(() => {
+    let getPokemonType = localStorage.getItem(LOCALSTORAGE_KEY_TYPE);
+    getPokemonType = JSON.parse(getPokemonType);
+
+    if (getPokemonType) setFil(getPokemonType);
+  }, []);
 
   // ---------------FetchTypesPokemon------------- //
   useEffect(() => {
@@ -121,7 +128,16 @@ function App() {
               )
             }
           />
-          <Route path="/type" element={<PokemonList fil={fil} />} />
+          <Route
+            path="/type"
+            element={
+              name.length >= 2 ? (
+                <SearchListPokemon arraySearch={arraySearch} />
+              ) : (
+                <PokemonList fil={fil} />
+              )
+            }
+          />
           <Route path="/type/:name" element={<PokemonListId />} />
           <Route path="/:name" element={<PokemonListId />} />
           <Route path="*" element={<NotFoundPage />} />

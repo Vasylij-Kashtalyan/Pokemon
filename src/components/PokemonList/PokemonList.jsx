@@ -4,8 +4,6 @@ import { useLocation } from 'react-router-dom';
 import s from './PokemonList.module.scss';
 
 function PokemonList({ details, fil, nextPage }) {
-  console.log(fil);
-
   const { pathname } = useLocation();
 
   if (pathname === '/type') {
