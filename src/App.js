@@ -9,6 +9,8 @@ import { Route, Routes } from 'react-router-dom';
 import PokemonListId from './components/PokemonListId';
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { Container } from './components/Container/Container';
+import { useDispatch, useSelector } from 'react-redux';
+import { setOffset } from 'redux/offSetSlice';
 
 const ListFilterType = lazy(() => import('./components/ListFilterType'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
@@ -23,12 +25,14 @@ const LOCALSTORAGE_KEY_TYPE = 'typePokemons';
 function App() {
   const [arraySearch, setArraySearch] = useState([]);
   const [details, setDetails] = useState([]);
-  const [offset, setOffset] = useState(40);
   const [types, setTypes] = useState([]);
   const [name, setName] = useState('');
   const [, setPokemons] = useState([]);
   const [limit] = useState(100);
   const [fil, setFil] = useState(details);
+
+  const offset = useSelector(state => state.offset.number);
+  const dispatch = useDispatch();
 
   // ---------------FetchAllPokemon------------- //
   useEffect(() => {
@@ -57,7 +61,7 @@ function App() {
 
   // -----------------NextPage---------------- //
   const nextPage = () => {
-    setOffset(limit + offset);
+    dispatch(setOffset(offset + limit));
   };
 
   // ---------------FilterTypesPokemon------------- //
@@ -113,8 +117,11 @@ function App() {
   return (
     <Container>
       <AppBar />
-      <Search path="/" onChange={handlerSearchName} />
+
+      <Search onChange={handlerSearchName} />
+
       <ListFilterType types={types} filterType={filterType} />
+
       <Suspense>
         <Routes>
           <Route
@@ -138,7 +145,9 @@ function App() {
               )
             }
           />
+
           <Route path="/type/:name" element={<PokemonListId />} />
+
           <Route path="/:name" element={<PokemonListId />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
