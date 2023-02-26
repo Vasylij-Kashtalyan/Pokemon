@@ -10,7 +10,7 @@ import PokemonListId from './components/PokemonListId';
 import { Suspense, lazy, useState, useEffect } from 'react';
 import { Container } from './components/Container/Container';
 import { useDispatch, useSelector } from 'react-redux';
-import { setOffset } from 'redux/offSetSlice';
+import { setOffset } from 'redux/offsetSlice';
 
 const ListFilterType = lazy(() => import('./components/ListFilterType'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
@@ -28,10 +28,10 @@ function App() {
   const [types, setTypes] = useState([]);
   const [name, setName] = useState('');
   const [, setPokemons] = useState([]);
-  const [limit] = useState(100);
   const [fil, setFil] = useState(details);
 
-  const offset = useSelector(state => state.offset.number);
+  const offset = useSelector(state => state.offset.value);
+  const limit = useSelector(state => state.limit.value);
   const dispatch = useDispatch();
 
   // ---------------FetchAllPokemon------------- //

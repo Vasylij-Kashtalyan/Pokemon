@@ -1,19 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const offsetInitialState = {
-  number: 40,
+  value: 40,
 };
 
-const offSetSlice = createSlice({
+const offsetSlice = createSlice({
   name: 'offset',
   initialState: offsetInitialState,
 
   reducers: {
     setOffset(state, action) {
-      state.number = action.payload;
+      state.value = action.payload;
     },
   },
 });
 
-export const { setOffset } = offSetSlice.actions;
-export const offSetReducer = offSetSlice.reducer;
+export const { setOffset } = offsetSlice.actions;
+export const offsetReducer = offsetSlice.reducer;

@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { offSetReducer } from './offSetSlice';
+import { offsetReducer } from './offsetSlice';
+import { limitReducer } from './limitSlice';
 
 export const store = configureStore({
   reducer: {
-    offset: offSetReducer,
+    offset: offsetReducer,
+    limit: limitReducer,
   },
 });
