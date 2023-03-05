@@ -11,6 +11,7 @@ import { Suspense, lazy, useState, useEffect } from 'react';
 import { Container } from './components/Container/Container';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOffset } from 'redux/offsetSlice';
+import { setArraySearch } from 'redux/arraySearchSlice';
 
 const ListFilterType = lazy(() => import('./components/ListFilterType'));
 const NotFoundPage = lazy(() => import('./components/NotFoundPage'));
@@ -23,7 +24,7 @@ const Search = lazy(() => import('./components/Search'));
 const LOCALSTORAGE_KEY_TYPE = 'typePokemons';
 
 function App() {
-  const [arraySearch, setArraySearch] = useState([]);
+  // const [arraySearch, setArraySearch] = useState([]);
   const [details, setDetails] = useState([]);
   const [types, setTypes] = useState([]);
   const [name, setName] = useState('');
@@ -110,7 +111,7 @@ function App() {
 
     if (name) {
       let filtePokemons = pokemons.filter(filterPokemonsByName(name));
-      setArraySearch(filtePokemons);
+      dispatch(setArraySearch(filtePokemons));
     }
   }, [name]);
 
@@ -129,7 +130,7 @@ function App() {
             exact="true"
             element={
               name.length >= 2 ? (
-                <SearchListPokemon arraySearch={arraySearch} />
+                <SearchListPokemon />
               ) : (
                 <PokemonList nextPage={nextPage} details={details} />
               )
@@ -139,7 +140,7 @@ function App() {
             path="/type"
             element={
               name.length >= 2 ? (
-                <SearchListPokemon arraySearch={arraySearch} />
+                <SearchListPokemon />
               ) : (
                 <PokemonList fil={fil} />
               )

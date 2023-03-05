@@ -1,8 +1,11 @@
 import s from './SearchListPokemon.module.scss';
 import { Link } from 'react-router-dom';
 import { Container } from '@mui/material';
+import { useSelector } from 'react-redux';
 
-function SearchListPokemon({ arraySearch }) {
+function SearchListPokemon() {
+  const arraySearch = useSelector(state => state.arraySearch.value);
+
   return (
     <Container xs={12} sm={6} md={4}>
       <div className={s.box}>
